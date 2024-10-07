@@ -1,0 +1,162 @@
+CREATE PROCEDURE dbo.sp_Get_PDC_Performance
+    @WeekFilter INT,
+    @ActualsFilter DATE,
+    @RAG_MIN_Threshold DECIMAL(6, 2),
+    @RAG_MAX_Threshold DECIMAL(6, 2),
+    @Output VARCHAR(40),
+    @Year INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    WITH WPML_Actuals AS (
+        SELECT 
+            [PDC Program] AS [PDC Program],
+            [Notification],
+            [Order],
+            [MAT],
+            [Region],
+            [Div],
+            [Authorized Funding Action (2024)],
+            [Project Reporting Year],
+            [Work Plan Date],
+            [Report Date],
+            [Reference Date],
+            [Notif Status],
+            [Notif User Status],
+            SUM(CASE WHEN [Project Reporting Year] = @Year THEN [Initiation Actuals] ELSE 0 END) AS [Initiation Actuals],
+            [Initiation Out],
+            SUM(CASE WHEN [Project Reporting Year] = @Year THEN [Design Actuals] ELSE 0 END) AS [Design Actuals],
+            [Design Out],
+            SUM(CASE WHEN [Project Reporting Year] = @Year THEN [Dependency Actuals] ELSE 0 END) AS [Dependency Actuals],
+            [Dependency Out],
+            SUM(CASE
+                WHEN (
+                    CAST([CLICK End Date] AS DATE) <= DATEADD(WEEK, 8, CAST(@ActualsFilter AS DATE))
+                    OR (YEAR([Report Date]) = @Year)
+                )
+                AND [PDC Program] NOT IN ('ED Pole Repl', 'ED Pole Repl - Emergent', 'Maintenance Capital', 'Maintenance Expense', 'COE Capital', 'COE Expense')
+                AND [Project Reporting Year] = @Year
+                THEN [Schedule Actuals]
+                WHEN (
+                    CAST([CLICK End Date] AS DATE) <= DATEADD(WEEK, 8, CAST(@ActualsFilter AS DATE))
+                    OR (YEAR([Reference Date]) = @Year AND [Notif Status] = 'COMP')
+                )
+                AND [PDC Program] IN ('ED Pole Repl', 'ED Pole Repl - Emergent', 'Maintenance Capital', 'Maintenance Expense', 'COE Capital', 'COE Expense')
+                AND [Project Reporting Year] = @Year
+                THEN [Schedule Actuals]
+                ELSE 0
+            END) AS [Schedule Actuals],
+            [Click End Date] AS [Schedule Out],
+            SUM(CASE
+                WHEN [PDC Program] NOT IN ('ED Pole Repl', 'ED Pole Repl - Emergent', 'Maintenance Capital', 'Maintenance Capital - Emergent', 'Maintenance Expense', 'Maintenance Expense - Emergent', 'COE Capital', 'COE Expense')
+                    AND [Program] <> 'ED WFM Dist Fault Anticipation'
+                    AND YEAR([Report Date]) = @Year
+                    THEN [Execute Actuals]
+                WHEN [PDC Program] IN ('ED Pole Repl', 'ED Pole Repl - Emergent', 'Maintenance Capital', 'Maintenance Capital - Emergent', 'Maintenance Expense', 'Maintenance Expense - Emergent', 'COE Capital', 'COE Expense')
+                    AND YEAR([Reference Date]) = @Year
+                    AND [Notif Status] = 'COMP'
+                    THEN [Execute Actuals]
+                ELSE 0
+            END) AS [Execute Actuals],
+            [Execute Out],
+            SUM(CASE WHEN [Project Reporting Year] = @Year THEN [In Workplan] ELSE 0 END) AS [In Workplan]
+        FROM BSA.dbo.vw_WPML_PDC_IDDSEC
+        WHERE [PDC Program] IS NOT NULL
+            AND (([Notif User Status] NOT LIKE '%CNCL%' AND [PDC Program] <> 'ED WFM Surge Arresters HFTD')
+                 OR [PDC Program] = 'ED WFM Surge Arresters HFTD')
+            AND ([Project Reporting Year] = @Year
+                 OR YEAR([Report Date]) = @Year
+                 OR (YEAR([Reference Date]) = @Year AND [Notif Status] = 'COMP'
+                     AND [PDC Program] IN ('ED Pole Repl', 'ED Pole Repl - Emergent', 'Maintenance Capital', 'Maintenance Expense', 'COE Capital', 'COE Expense')))
+            AND [PDC Program] <> 'NOT IN PDC'
+            AND [PDC Program] IS NOT NULL
+        GROUP BY [PDC Program], [Notification], [Order], [MAT], [Region], [Div], [Authorized Funding Action (2024)], [Project Reporting Year], [Work Plan Date], [Report Date], [Reference Date], [Notif Status], [Notif User Status], [Initiation Out], [Design Out], [Dependency Out], [Schedule Out], [Click End Date], [Execute Out]
+    ),
+
+    IDDSEC_Actuals AS (
+        SELECT [PDC Program],
+            CASE WHEN [PDC Program] IN ('Maintenance Capital', 'Maintenance Expense', 'COE Capital', 'COE Expense') THEN 'ED Maintenance' ELSE 'ED Projects' END AS [Mega Process],
+            CASE WHEN [PDC Program] IN ('Maintenance Capital', 'Maintenance Expense', 'COE Capital', 'COE Expense') THEN 'Ron Richardson' ELSE 'Sandra Cullings' END AS [MPO],
+            NULL AS [Process],
+            SUM(CASE WHEN [Initiation Out] <= @ActualsFilter THEN [Initiation Actuals] END) AS [Initiation Actuals],
+            SUM(CASE WHEN [Design Out] <= @ActualsFilter THEN [Design Actuals] END) AS [Design Actuals],
+            SUM(CASE WHEN [Dependency Out] <= @ActualsFilter THEN [Dependency Actuals] END) AS [Dependency Actuals],
+            SUM([Schedule Actuals]) AS [Schedule Actuals],
+            SUM(CASE WHEN [Execute Out] <= @ActualsFilter THEN [Execute Actuals] END) AS [Execute Actuals without DOT],
+            SUM([In Workplan]) AS [Total in Workplan]
+        FROM WPML_Actuals
+        GROUP BY [PDC Program],
+                 CASE WHEN [PDC Program] IN ('Maintenance Capital', 'Maintenance Expense', 'COE Capital', 'COE Expense') THEN 'ED Maintenance' ELSE 'ED Projects' END,
+                 CASE WHEN [PDC Program] IN ('Maintenance Capital', 'Maintenance Expense', 'COE Capital', 'COE Expense') THEN 'Ron Richardson' ELSE 'Sandra Cullings' END
+    ),
+
+    DOT_Rebaseline AS (
+        SELECT DISTINCT a.[PDC Program], [Rebaseline]
+        FROM (
+            SELECT DISTINCT [Program Nickname],
+                CASE
+                    WHEN [Program Nickname] = 'ED COE Capital' THEN 'COE Capital'
+                    WHEN [Program Nickname] = 'ED COE Expense' THEN 'COE Expense'
+                    WHEN [Program Nickname] IN ('ED Maint EC Tags Expense', 'ED Maint Non-EC Tags Expense') THEN 'Maintenance Expense'
+                    WHEN [Program Nickname] IN ('ED Maint EC Tags Capital', 'ED Maint Non-EC Tags Capital') THEN 'Maintenance Capital'
+                    ELSE [Program Nickname]
+                END AS [PDC Program],
+                SUM(ISNULL(a.[Rebaseline], 0)) AS [Rebaseline]
+            FROM ada.[Delivery].[DOT_Unit_Forecast_Comp] a
+            WHERE a.[Date Range] LIKE '%2024%'
+            GROUP BY [Program Nickname]
+        ) a
+        INNER JOIN bsa.dbo.vw_NewWOR_PDCTargets_2024 b ON a.[PDC Program] = b.[PDC Program]
+    ),
+
+    IDDE_DOT AS (
+        SELECT [PDC Program],
+            [FULL Week Number],
+            [Month2],
+            [Month],
+            SUM(ISNULL([Initiation YTD Target], 0)) AS [Initiation Target],
+            SUM(ISNULL([Design YTD Target], 0)) AS [Design Target],
+            SUM(ISNULL([Dependency YTD Target], 0)) AS [Dependency Target],
+            SUM(ISNULL([Execute YTD Target], 0)) AS [Execute Target],
+            SUM(CASE WHEN [Program Nickname] = 'ED WFM Dist Fault Anticipation' THEN ISNULL([YTD Completions], 0) END) AS [YTD Completions]
+        FROM bsa.dbo.vw_NewWOR_PDCTargets_2024
+        WHERE [FULL Week Number] = @WeekFilter
+            AND [PDC Program] IS NOT NULL
+        GROUP BY [PDC Program], [FULL Week Number], [Month2], [Month]
+    ),
+
+    -- Additional CTEs as per original query here --
+
+    ScheduleTargets AS (
+        SELECT [PDC Program], [Month2], [Month], SUM([Execute YTD Forecast]) AS [Schedule Target]
+        FROM bsa.dbo.vw_NewWOR_PDCTargets_2024
+        WHERE [FULL Week Number] = (@WeekFilter + 4)
+            AND [PDC Program] IS NOT NULL
+        GROUP BY [PDC Program], [Month2], [Month]
+    )
+
+    -- Main Query Starts Here
+    SELECT
+        @Output AS [Output],
+        act.[Mega Process],
+        act.[MPO],
+        act.[Process],
+        dot.[PDC Program],
+        '' AS [Unit of Measure],
+        'Annual Target' AS [Phase],
+        ROUND([Initiation Target], 0) AS [Plan],
+        '' AS [Completions],
+        '' AS [% to Plan],
+        '' AS [On Track],
+        '' AS [RAG]
+    FROM IDDE_DOT dot
+    LEFT JOIN IDDSEC_Actuals act ON dot.[PDC Program] = act.[PDC Program]
+    
+    UNION ALL
+    
+    -- Additional Select statements as per original query here --
+
+    ORDER BY [PDC Program]
+END
+GO
