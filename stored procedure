@@ -10,7 +10,7 @@ BEGIN
     SET NOCOUNT ON;
 
     WITH WPML_Actuals AS (
-        SELECT 
+        SELECT
             [PDC Program] AS [PDC Program],
             [Notification],
             [Order],
@@ -157,6 +157,6 @@ BEGIN
     
     -- Additional Select statements as per original query here --
 
-    ORDER BY [PDC Program]
+    ORDER BY dot.[PDC Program];
 END
 GO
