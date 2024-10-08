@@ -1,0 +1,177 @@
+-- STACKABLE FORMAT
+SELECT
+    @Output AS [Output],
+    act.[Mega Process],
+    act.[MPO],
+    act.[Process],
+    dot.[PDC Program],
+    '' AS [Unit of Measure],
+    'Annual Target' AS [Phase],
+    ROUND([Initiation Target],0) AS [Plan],
+    '' AS [Completions],
+    '' AS [% to Plan],
+    '' AS [On Track],
+    '' AS [RAG]
+FROM IDDE_DOT dot
+LEFT JOIN IDDSEC_Actuals act ON dot.[PDC Program] = act.[PDC Program]
+
+UNION ALL
+
+SELECT
+    @Output AS [Output],
+    act.[Mega Process],
+    act.[MPO],
+    act.[Process],
+    dot.[PDC Program],
+    '' AS [Unit of Measure],
+    'Initiation' AS [Phase],
+    ROUND(dot.[Initiation Target],0) AS [Plan],
+    ISNULL(act.[Initiation Actuals],0) AS [Completions],
+    CASE  
+        WHEN ISNULL(dot.[Initiation Target],0) = 0 THEN 0
+        ELSE ROUND((ISNULL(act.[Initiation Actuals],0)/dot.[Initiation Target]),4)
+    END AS [% to Plan],
+    '' AS [On Track],
+    '' AS [RAG]
+FROM IDDE_DOT dot
+LEFT JOIN IDDSEC_Actuals act ON dot.[PDC Program] = Act.[PDC Program]
+
+UNION ALL
+
+SELECT
+    @Output AS [Output],
+    act.[Mega Process],
+    act.[MPO],
+    act.[Process],
+    dot.[PDC Program],
+    '' AS [Unit of Measure],
+    'Design' AS [Phase],
+    ROUND(dot.[Design Target],0) AS [Plan],
+    ISNULL(act.[Design Actuals],0) AS [Completions],
+    CASE  
+        WHEN ISNULL(dot.[Design Target],0) = 0 THEN 0
+        ELSE ROUND((ISNULL(act.[Design Actuals],0)/dot.[Design Target]),4)
+    END AS [% to Plan],
+    '' AS [On Track],
+    '' AS [RAG]
+FROM IDDE_DOT dot
+LEFT JOIN IDDSEC_Actuals act ON dot.[PDC Program] = Act.[PDC Program]
+
+UNION ALL
+
+SELECT
+    @Output AS [Output],
+    act.[Mega Process],
+    act.[MPO],
+    act.[Process],
+    dot.[PDC Program],
+    '' AS [Unit of Measure],
+    'Dependencies' AS [Phase],
+    ROUND(dot.[Dependency Target],0) AS [Plan],
+    ISNULL(act.[Dependency Actuals],0) AS [Completions],
+    CASE  
+        WHEN ISNULL(dot.[Dependency Target],0) = 0 THEN 0
+        ELSE ROUND((ISNULL(act.[Dependency Actuals],0)/dot.[Dependency Target]),4)
+    END AS [% to Plan],
+    '' AS [On Track],
+    '' AS [RAG]
+FROM IDDE_DOT dot
+LEFT JOIN IDDSEC_Actuals act ON dot.[PDC Program] = Act.[PDC Program]
+
+UNION ALL
+
+SELECT
+    @Output AS [Output],
+    act.[Mega Process],
+    act.[MPO],
+    act.[Process],
+    dot.[PDC Program],
+    '' AS [Unit of Measure],
+    'Schedule' AS [Phase],
+    ROUND(dot.[Schedule Target],0) AS [Plan],
+    ISNULL(act.[Schedule Actuals],0) AS [Completions],
+    CASE  
+        WHEN ISNULL(dot.[Schedule Target],0) = 0 THEN 0
+        ELSE ROUND((ISNULL(act.[Schedule Actuals],0)/dot.[Schedule Target]),4)
+    END AS [% to Plan],
+    '' AS [On Track],
+    '' AS [RAG]
+FROM ScheduleTargets dot
+LEFT JOIN IDDSEC_Actuals act ON dot.[PDC Program] = Act.[PDC Program]
+
+UNION ALL
+
+SELECT
+    @Output AS [Output],
+    act.[Mega Process],
+    act.[MPO],
+    act.[Process],
+    dot.[PDC Program],
+    '' AS [Unit of Measure],
+    'Execute' AS [Phase],
+    ROUND(dot.[Execute Target],0) AS [Plan],
+    ISNULL(act.[Execute Actuals],0) AS [Completions],
+    CASE  
+        WHEN ISNULL(dot.[Execute Target],0) = 0 THEN 0
+        ELSE ROUND((ISNULL(act.[Execute Actuals],0)/dot.[Execute Target]),4)
+    END AS [% to Plan],
+    '' AS [On Track],
+    '' AS [RAG]
+FROM IDDE_DOT dot
+LEFT JOIN IDDSEC_Actuals_wDOTActuals act ON dot.[PDC Program] = Act.[PDC Program]
+
+UNION ALL
+
+SELECT
+    @Output AS [Output],
+    act.[Mega Process],
+    act.[MPO],
+    act.[Process],
+    dot.[PDC Program],
+    '' AS [Unit of Measure],
+    'Total in WP' AS [Phase],
+    '' AS [Plan],
+    act.[Total in Workplan] AS [Completions],
+    '' AS [% to Plan],
+    '' AS [On Track],
+    'GRAY' [RAG]
+FROM IDDE_DOT dot
+LEFT JOIN IDDSEC_Actuals act ON dot.[PDC Program] = Act.[PDC Program]
+
+UNION ALL
+
+SELECT
+    @Output AS [Output],
+    act.[Mega Process],
+    act.[MPO],
+    act.[Process],
+    dot.[PDC Program],
+    '' AS [Unit of Measure],
+    'EOY Forecast' AS [Phase],
+    '' AS [Plan],
+    act.[Total in Workplan] AS [Completions],
+    '' AS [% to Plan],
+    '' AS [On Track],
+    'GRAY' [RAG]
+FROM IDDE_DOT dot
+LEFT JOIN IDDSEC_Actuals act ON dot.[PDC Program] = Act.[PDC Program]
+
+UNION ALL
+
+SELECT
+    @Output AS [Output],
+    act.[Mega Process],
+    act.[MPO],
+    act.[Process],
+    dot.[PDC Program],
+    '' AS [Unit of Measure],
+    'Rebaseline' AS [Phase],
+    0 AS [Plan],
+    dot.[Rebaseline] AS [Completions],
+    '' AS [% to Plan],
+    '' AS [On Track],
+    'GRAY' [RAG]
+FROM DOT_Rebaseline dot
+LEFT JOIN IDDSEC_Actuals act ON dot.[PDC Program] = Act.[PDC Program]
+
+ORDER BY [PDC Program];
