@@ -1,3 +1,4 @@
+
 DECLARE @WeekFilter INT;
 DECLARE @ActualsFilter DATE;
 DECLARE @RAG_MIN_Threshold DECIMAL(6,2);
