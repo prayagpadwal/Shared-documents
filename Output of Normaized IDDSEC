@@ -1,0 +1,182 @@
+Output	Mega Process	MPO	Process	PDC Program	Unit of Measure	Phase	Plan	Completions	% to Plan	On Track	RAG
+PDC	ED Maintenance	Ron Richardson	NULL	COE Capital		Initiation	1051	997	0.9486		RED
+PDC	ED Maintenance	Ron Richardson	NULL	COE Capital		Rebaseline	0	1051	0		GRAY
+PDC	ED Maintenance	Ron Richardson	NULL	COE Capital		Execute	838	971	1.1587		GREEN
+PDC	ED Maintenance	Ron Richardson	NULL	COE Capital		Design	1051	986	0.9382		RED
+PDC	ED Maintenance	Ron Richardson	NULL	COE Capital		Annual Target	1051	0	0		
+PDC	ED Maintenance	Ron Richardson	NULL	COE Capital		Total in WP	0	1031	0		GRAY
+PDC	ED Maintenance	Ron Richardson	NULL	COE Capital		Schedule	1030	944	0.9165		RED
+PDC	ED Maintenance	Ron Richardson	NULL	COE Capital		Dependencies	1051	899	0.8554		RED
+PDC	ED Maintenance	Ron Richardson	NULL	COE Capital		EOY Forecast	0	1031	0		GRAY
+PDC	ED Maintenance	Ron Richardson	NULL	COE Expense		Rebaseline	0	1106	0		GRAY
+PDC	ED Maintenance	Ron Richardson	NULL	COE Expense		Execute	884	1139	1.2885		RED
+PDC	ED Maintenance	Ron Richardson	NULL	COE Expense		Annual Target	1106	0	0		
+PDC	ED Maintenance	Ron Richardson	NULL	COE Expense		EOY Forecast	0	1244	0		GRAY
+PDC	ED Maintenance	Ron Richardson	NULL	COE Expense		Total in WP	0	1244	0		GRAY
+PDC	ED Maintenance	Ron Richardson	NULL	COE Expense		Schedule	1092	1117	1.0229		GREEN
+PDC	ED Maintenance	Ron Richardson	NULL	COE Expense		Dependencies	1106	957	0.8653		RED
+PDC	ED Maintenance	Ron Richardson	NULL	COE Expense		Design	1106	1242	1.123		BLACK
+PDC	ED Maintenance	Ron Richardson	NULL	COE Expense		Initiation	1106	1242	1.123		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED Cable		Initiation	7	7	1		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED Cable		Rebaseline	0	7	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED Cable		Execute	2	3	1.5		RED
+PDC	ED Projects	Sandra Cullings	NULL	ED Cable		Design	7	7	1		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED Cable		Annual Target	7	0	0		
+PDC	ED Projects	Sandra Cullings	NULL	ED Cable		Total in WP	0	7	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED Cable		Schedule	3	7	2.3333		RED
+PDC	ED Projects	Sandra Cullings	NULL	ED Cable		Dependencies	7	7	1		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED Cable		EOY Forecast	0	7	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED Cap Cust Voltage Complaints		Rebaseline	0	83	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED Cap Cust Voltage Complaints		Execute	67	68	1.0149		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED Cap Cust Voltage Complaints		Annual Target	83	0	0		
+PDC	ED Projects	Sandra Cullings	NULL	ED Cap Cust Voltage Complaints		Total in WP	0	90	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED Cap Cust Voltage Complaints		EOY Forecast	0	90	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED Cap Cust Voltage Complaints		Initiation	83	90	1.0843		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED Cap Cust Voltage Complaints		Design	83	85	1.0241		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED Cap Cust Voltage Complaints		Dependencies	83	77	0.9277		RED
+PDC	ED Projects	Sandra Cullings	NULL	ED Cap Cust Voltage Complaints		Schedule	79	80	1.0127		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED Capacity		EOY Forecast	0	72	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED Capacity		Rebaseline	0	52	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED Capacity		Total in WP	0	72	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED Capacity		Schedule	46	56	1.2174		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED Capacity		Design	52	71	1.3654		RED
+PDC	ED Projects	Sandra Cullings	NULL	ED Capacity		Initiation	52	72	1.3846		RED
+PDC	ED Projects	Sandra Cullings	NULL	ED Capacity		Annual Target	52	0	0		
+PDC	ED Projects	Sandra Cullings	NULL	ED Capacity		Execute	34	39	1.1471		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED Capacity		Dependencies	52	63	1.2115		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED Dist Protec Device/MSO Replace		Total in WP	0	35	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED Dist Protec Device/MSO Replace		Design	33	34	1.0303		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED Dist Protec Device/MSO Replace		EOY Forecast	0	35	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED Dist Protec Device/MSO Replace		Schedule	23	33	1.4348		RED
+PDC	ED Projects	Sandra Cullings	NULL	ED Dist Protec Device/MSO Replace		Annual Target	33	0	0		
+PDC	ED Projects	Sandra Cullings	NULL	ED Dist Protec Device/MSO Replace		Execute	21	21	1		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED Dist Protec Device/MSO Replace		Dependencies	33	31	0.9394		RED
+PDC	ED Projects	Sandra Cullings	NULL	ED Dist Protec Device/MSO Replace		Initiation	33	35	1.0606		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED Fusesaver		Total in WP	0	91	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED Fusesaver		Rebaseline	0	75	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED Fusesaver		EOY Forecast	0	91	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED Fusesaver		Initiation	75	91	1.2133		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED Fusesaver		Execute	32	34	1.0625		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED Fusesaver		Design	75	91	1.2133		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED Fusesaver		Annual Target	75	0	0		
+PDC	ED Projects	Sandra Cullings	NULL	ED Fusesaver		Dependencies	75	55	0.7333		RED
+PDC	ED Projects	Sandra Cullings	NULL	ED Fusesaver		Schedule	40	52	1.3		RED
+PDC	ED Projects	Sandra Cullings	NULL	ED LBOR		EOY Forecast	0	59	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED LBOR		Annual Target	56	0	0		
+PDC	ED Projects	Sandra Cullings	NULL	ED LBOR		Dependencies	56	43	0.7679		RED
+PDC	ED Projects	Sandra Cullings	NULL	ED LBOR		Total in WP	0	59	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED LBOR		Schedule	36	47	1.3056		RED
+PDC	ED Projects	Sandra Cullings	NULL	ED LBOR		Execute	35	24	0.6857		RED
+PDC	ED Projects	Sandra Cullings	NULL	ED LBOR		Design	56	58	1.0357		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED LBOR		Rebaseline	0	56	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED LBOR		Initiation	56	59	1.0536		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED OH Conductor Repl Non-HFTD		Annual Target	11	0	0		
+PDC	ED Projects	Sandra Cullings	NULL	ED OH Conductor Repl Non-HFTD		Dependencies	11	10.8564393939394	0.9997		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED OH Conductor Repl Non-HFTD		Execute	5	6.98600378787879	1.2725		RED
+PDC	ED Projects	Sandra Cullings	NULL	ED OH Conductor Repl Non-HFTD		Initiation	11	10.8564393939394	0.9997		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED OH Conductor Repl Non-HFTD		Design	11	10.8564393939394	0.9997		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED OH Conductor Repl Non-HFTD		EOY Forecast	0	10.8564393939394	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED OH Conductor Repl Non-HFTD		Rebaseline	0	10.86	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED OH Conductor Repl Non-HFTD		Total in WP	0	10.8564393939394	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED OH Conductor Repl Non-HFTD		Schedule	7	8.43806818181818	1.2089		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED Pole Repl		Dependencies	15326	18012	1.1753		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED Pole Repl		Execute	12235	13258	1.0836		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED Pole Repl		Schedule	14272	17261	1.2094		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED Pole Repl		Design	15326	19788	1.2911		RED
+PDC	ED Projects	Sandra Cullings	NULL	ED Pole Repl		Annual Target	15326	0	0		
+PDC	ED Projects	Sandra Cullings	NULL	ED Pole Repl		Rebaseline	0	15326	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED Pole Repl		Total in WP	0	21162	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED Pole Repl		Initiation	15326	20684	1.3496		RED
+PDC	ED Projects	Sandra Cullings	NULL	ED Pole Repl		EOY Forecast	0	21162	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED Proactive Transformer Repl		Execute	102	101	0.9902		RED
+PDC	ED Projects	Sandra Cullings	NULL	ED Proactive Transformer Repl		Schedule	135	240	1.7778		RED
+PDC	ED Projects	Sandra Cullings	NULL	ED Proactive Transformer Repl		Dependencies	146	353	2.4178		RED
+PDC	ED Projects	Sandra Cullings	NULL	ED Proactive Transformer Repl		Design	146	479	3.2808		RED
+PDC	ED Projects	Sandra Cullings	NULL	ED Proactive Transformer Repl		Rebaseline	0	146	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED Proactive Transformer Repl		Total in WP	0	543	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED Proactive Transformer Repl		Annual Target	146	0	0		
+PDC	ED Projects	Sandra Cullings	NULL	ED Proactive Transformer Repl		EOY Forecast	0	543	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED Proactive Transformer Repl		Initiation	146	510	3.4932		RED
+PDC	ED Projects	Sandra Cullings	NULL	ED Reliability		Execute	35	32	0.9143		RED
+PDC	ED Projects	Sandra Cullings	NULL	ED Reliability		Design	60	63	1.05		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED Reliability		Annual Target	60	0	0		
+PDC	ED Projects	Sandra Cullings	NULL	ED Reliability		Rebaseline	0	60	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED Reliability		Initiation	60	64	1.0667		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED Reliability		EOY Forecast	0	64	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED Reliability		Total in WP	0	64	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED Reliability		Dependencies	60	55	0.9167		RED
+PDC	ED Projects	Sandra Cullings	NULL	ED Reliability		Schedule	37	52	1.4054		RED
+PDC	ED Projects	Sandra Cullings	NULL	ED Rule 20A		Total in WP	0	3	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED Rule 20A		EOY Forecast	0	3	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED Rule 20A		Rebaseline	0	3	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED Rule 20A		Design	3	3	1		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED Rule 20A		Annual Target	3	0	0		
+PDC	ED Projects	Sandra Cullings	NULL	ED Rule 20A		Schedule	2	2	1		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED Rule 20A		Execute	2	2	1		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED Rule 20A		Initiation	3	3	1		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED Rule 20A		Dependencies	3	3	1		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Dist Line MSO Replace		Total in WP	0	25	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Dist Line MSO Replace		EOY Forecast	0	25	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Dist Line MSO Replace		Rebaseline	0	26	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Dist Line MSO Replace		Design	26	25	0.9615		RED
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Dist Line MSO Replace		Annual Target	26	0	0		
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Dist Line MSO Replace		Schedule	25	25	1		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Dist Line MSO Replace		Execute	19	17	0.8947		RED
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Dist Line MSO Replace		Initiation	26	25	0.9615		RED
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Dist Line MSO Replace		Dependencies	26	24	0.9231		RED
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Line Sensors		Initiation	311	294	0.9453		RED
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Line Sensors		EOY Forecast	0	294	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Line Sensors		Rebaseline	0	196	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Line Sensors		Design	0	100	1		BLACK
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Line Sensors		Annual Target	311	0	0		
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Line Sensors		Total in WP	0	294	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Line Sensors		Dependencies	311	291	0.9357		RED
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Line Sensors		Schedule	299	282	0.9431		RED
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Line Sensors		Execute	251	289	1.1514		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Non-Exempt Expulsion Fuses HFTD		EOY Forecast	0	3428	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Non-Exempt Expulsion Fuses HFTD		Initiation	3000	3428	1.1427		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Non-Exempt Expulsion Fuses HFTD		Rebaseline	0	3000	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Non-Exempt Expulsion Fuses HFTD		Design	0	0	1		BLACK
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Non-Exempt Expulsion Fuses HFTD		Schedule	2727	3120	1.1441		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Non-Exempt Expulsion Fuses HFTD		Execute	2340	2460	1.0513		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Non-Exempt Expulsion Fuses HFTD		Dependencies	3000	3292	1.0973		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Non-Exempt Expulsion Fuses HFTD		Annual Target	3000	0	0		
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Non-Exempt Expulsion Fuses HFTD		Total in WP	0	3428	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Surge Arresters HFTD		Dependencies	757	761	1.0053		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Surge Arresters HFTD		Annual Target	757	0	0		
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Surge Arresters HFTD		Execute	384	498	1.2969		RED
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Surge Arresters HFTD		Schedule	588	710	1.2075		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Surge Arresters HFTD		Initiation	757	765	1.0106		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Surge Arresters HFTD		Design	0	0	1		GREEN
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Surge Arresters HFTD		Total in WP	0	765	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Surge Arresters HFTD		Rebaseline	0	757	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	ED WFM Surge Arresters HFTD		EOY Forecast	0	765	0		GRAY
+PDC	ED Maintenance	Ron Richardson	NULL	Maintenance Capital		Annual Target	20436	0	0		
+PDC	ED Maintenance	Ron Richardson	NULL	Maintenance Capital		Dependencies	20436	21640	1.0589		GREEN
+PDC	ED Maintenance	Ron Richardson	NULL	Maintenance Capital		Execute	16920	18610	1.0999		GREEN
+PDC	ED Maintenance	Ron Richardson	NULL	Maintenance Capital		Schedule	18635	21846	1.1723		GREEN
+PDC	ED Maintenance	Ron Richardson	NULL	Maintenance Capital		Design	20436	25041	1.2253		GREEN
+PDC	ED Maintenance	Ron Richardson	NULL	Maintenance Capital		Rebaseline	0	0	0		GRAY
+PDC	ED Maintenance	Ron Richardson	NULL	Maintenance Capital		EOY Forecast	0	25820	0		GRAY
+PDC	ED Maintenance	Ron Richardson	NULL	Maintenance Capital		Total in WP	0	25820	0		GRAY
+PDC	ED Maintenance	Ron Richardson	NULL	Maintenance Capital		Initiation	20436	25368	1.2413		GREEN
+PDC	ED Maintenance	Ron Richardson	NULL	Maintenance Capital		Rebaseline	0	20436	0		GRAY
+PDC	ED Maintenance	Ron Richardson	NULL	Maintenance Expense		Execute	55449	45876	0.8274		RED
+PDC	ED Maintenance	Ron Richardson	NULL	Maintenance Expense		Total in WP	0	70687	0		GRAY
+PDC	ED Maintenance	Ron Richardson	NULL	Maintenance Expense		Dependencies	69150	59668	0.8629		RED
+PDC	ED Maintenance	Ron Richardson	NULL	Maintenance Expense		Annual Target	69150	0	0		
+PDC	ED Maintenance	Ron Richardson	NULL	Maintenance Expense		Design	69150	69085	0.9991		BLACK
+PDC	ED Maintenance	Ron Richardson	NULL	Maintenance Expense		Rebaseline	0	0	0		GRAY
+PDC	ED Maintenance	Ron Richardson	NULL	Maintenance Expense		EOY Forecast	0	70687	0		GRAY
+PDC	ED Maintenance	Ron Richardson	NULL	Maintenance Expense		Initiation	69150	69095	0.9992		GREEN
+PDC	ED Maintenance	Ron Richardson	NULL	Maintenance Expense		Schedule	54041	55095	1.0195		GREEN
+PDC	ED Maintenance	Ron Richardson	NULL	Maintenance Expense		Rebaseline	0	69150	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	Mobile Home Park Electric		Execute	1311	1300	0.9916		RED
+PDC	ED Projects	Sandra Cullings	NULL	Mobile Home Park Electric		Schedule	1560	1342	0.8603		RED
+PDC	ED Projects	Sandra Cullings	NULL	Mobile Home Park Electric		Annual Target	1475	0	0		
+PDC	ED Projects	Sandra Cullings	NULL	Mobile Home Park Electric		Initiation	1475	1452	0.9844		RED
+PDC	ED Projects	Sandra Cullings	NULL	Mobile Home Park Electric		Rebaseline	0	1475	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	Mobile Home Park Electric		EOY Forecast	0	1452	0		GRAY
+PDC	ED Projects	Sandra Cullings	NULL	Mobile Home Park Electric		Dependencies	0	0	1		BLACK
+PDC	ED Projects	Sandra Cullings	NULL	Mobile Home Park Electric		Design	0	0	1		BLACK
+PDC	ED Projects	Sandra Cullings	NULL	Mobile Home Park Electric		Total in WP	0	1452	0		GRAY
