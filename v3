@@ -8,7 +8,7 @@ SELECT
     '' AS [Unit of Measure],
     'Annual Target' AS [Phase],
     CASE 
-        WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN dot.[Initiation Target]
+        WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(dot.[Initiation Target], 2)
         ELSE ROUND(dot.[Initiation Target], 0)
     END AS [Plan],
     '' AS [Completions],
@@ -30,7 +30,7 @@ SELECT
     '' AS [Unit of Measure],
     'Initiation' AS [Phase],
     CASE 
-        WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN dot.[Initiation Target]
+        WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(dot.[Initiation Target], 2)
         ELSE ROUND(dot.[Initiation Target], 0)
     END AS [Plan],
     ISNULL(act.[Initiation Actuals], 0) AS [Completions],
@@ -38,7 +38,7 @@ SELECT
         WHEN ISNULL(dot.[Initiation Target], 0) = 0 THEN 0
         ELSE 
             CASE 
-                WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ISNULL(act.[Initiation Actuals], 0) / dot.[Initiation Target]
+                WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(ISNULL(act.[Initiation Actuals], 0) / dot.[Initiation Target], 4)
                 ELSE ROUND((ISNULL(act.[Initiation Actuals], 0) / dot.[Initiation Target]), 4)
             END
     END AS [% to Plan],
@@ -59,7 +59,7 @@ SELECT
     '' AS [Unit of Measure],
     'Design' AS [Phase],
     CASE 
-        WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN dot.[Design Target]
+        WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(dot.[Design Target], 2)
         ELSE ROUND(dot.[Design Target], 0)
     END AS [Plan],
     ISNULL(act.[Design Actuals], 0) AS [Completions],
@@ -67,7 +67,7 @@ SELECT
         WHEN ISNULL(dot.[Design Target], 0) = 0 THEN 0
         ELSE 
             CASE 
-                WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ISNULL(act.[Design Actuals], 0) / dot.[Design Target]
+                WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(ISNULL(act.[Design Actuals], 0) / dot.[Design Target], 4)
                 ELSE ROUND((ISNULL(act.[Design Actuals], 0) / dot.[Design Target]), 4)
             END
     END AS [% to Plan],
@@ -88,7 +88,7 @@ SELECT
     '' AS [Unit of Measure],
     'Dependencies' AS [Phase],
     CASE 
-        WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN dot.[Dependency Target]
+        WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(dot.[Dependency Target], 2)
         ELSE ROUND(dot.[Dependency Target], 0)
     END AS [Plan],
     ISNULL(act.[Dependency Actuals], 0) AS [Completions],
@@ -96,7 +96,7 @@ SELECT
         WHEN ISNULL(dot.[Dependency Target], 0) = 0 THEN 0
         ELSE 
             CASE 
-                WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ISNULL(act.[Dependency Actuals], 0) / dot.[Dependency Target]
+                WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(ISNULL(act.[Dependency Actuals], 0) / dot.[Dependency Target], 4)
                 ELSE ROUND((ISNULL(act.[Dependency Actuals], 0) / dot.[Dependency Target]), 4)
             END
     END AS [% to Plan],
@@ -117,7 +117,7 @@ SELECT
     '' AS [Unit of Measure],
     'Schedule' AS [Phase],
     CASE 
-        WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN dot.[Schedule Target]
+        WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(dot.[Schedule Target], 2)
         ELSE ROUND(dot.[Schedule Target], 0)
     END AS [Plan],
     ISNULL(act.[Schedule Actuals], 0) AS [Completions],
@@ -125,7 +125,7 @@ SELECT
         WHEN ISNULL(dot.[Schedule Target], 0) = 0 THEN 0
         ELSE 
             CASE 
-                WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ISNULL(act.[Schedule Actuals], 0) / dot.[Schedule Target]
+                WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(ISNULL(act.[Schedule Actuals], 0) / dot.[Schedule Target], 4)
                 ELSE ROUND((ISNULL(act.[Schedule Actuals], 0) / dot.[Schedule Target]), 4)
             END
     END AS [% to Plan],
@@ -146,7 +146,7 @@ SELECT
     '' AS [Unit of Measure],
     'Execute' AS [Phase],
     CASE 
-        WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN dot.[Execute Target]
+        WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(dot.[Execute Target], 2)
         ELSE ROUND(dot.[Execute Target], 0)
     END AS [Plan],
     ISNULL(act.[Execute Actuals], 0) AS [Completions],
@@ -154,7 +154,7 @@ SELECT
         WHEN ISNULL(dot.[Execute Target], 0) = 0 THEN 0
         ELSE 
             CASE 
-                WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ISNULL(act.[Execute Actuals], 0) / dot.[Execute Target]
+                WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(ISNULL(act.[Execute Actuals], 0) / dot.[Execute Target], 4)
                 ELSE ROUND((ISNULL(act.[Execute Actuals], 0) / dot.[Execute Target]), 4)
             END
     END AS [% to Plan],
