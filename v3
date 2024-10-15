@@ -1,0 +1,139 @@
+-- First UNION ALL for 'Annual Target' Phase
+SELECT
+    @Output AS [Output],
+    act.[Mega Process],
+    act.[MPO],
+    act.[Process],
+    dot.[PDC Program],
+    '' AS [Unit of Measure],
+    'Annual Target' AS [Phase],
+    CASE  
+        WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN [Initiation Target]
+        ELSE ROUND([Initiation Target], 0)
+    END AS [Plan],
+    '' AS [Completions],
+    '' AS [% to Plan],
+    '' AS [On Track],
+    '' AS [RAG]
+FROM IDDE_DOT dot
+LEFT JOIN IDDSEC_Actuals act ON dot.[PDC Program] = act.[PDC Program]
+
+-- Second UNION ALL for 'Initiation' Phase
+UNION ALL
+SELECT
+    @Output AS [Output],
+    act.[Mega Process],
+    act.[MPO],
+    act.[Process],
+    dot.[PDC Program],
+    '' AS [Unit of Measure],
+    'Initiation' AS [Phase],
+    CASE  
+        WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN dot.[Initiation Target]
+        ELSE ROUND(dot.[Initiation Target], 0)
+    END AS [Plan],
+    ISNULL(act.[Initiation Actuals],0) AS [Completions],
+    CASE  
+        WHEN ISNULL(dot.[Initiation Target],0) = 0 THEN 0
+        ELSE ROUND((ISNULL(act.[Initiation Actuals],0)/dot.[Initiation Target]),4)
+    END AS [% to Plan],
+    '' AS [On Track],
+    '' AS [RAG]
+FROM IDDE_DOT dot
+LEFT JOIN IDDSEC_Actuals act ON dot.[PDC Program] = Act.[PDC Program]
+
+-- Third UNION ALL for 'Design' Phase
+UNION ALL
+SELECT
+    @Output AS [Output],
+    act.[Mega Process],
+    act.[MPO],
+    act.[Process],
+    dot.[PDC Program],
+    '' AS [Unit of Measure],
+    'Design' AS [Phase],
+    CASE  
+        WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN dot.[Design Target]
+        ELSE ROUND(dot.[Design Target], 0)
+    END AS [Plan],
+    ISNULL(act.[Design Actuals],0) AS [Completions],
+    CASE  
+        WHEN ISNULL(dot.[Design Target],0) = 0 THEN 0
+        ELSE ROUND((ISNULL(act.[Design Actuals],0)/dot.[Design Target]),4)
+    END AS [% to Plan],
+    '' AS [On Track],
+    '' AS [RAG]
+FROM IDDE_DOT dot
+LEFT JOIN IDDSEC_Actuals act ON dot.[PDC Program] = Act.[PDC Program]
+
+-- Fourth UNION ALL for 'Dependencies' Phase
+UNION ALL
+SELECT
+    @Output AS [Output],
+    act.[Mega Process],
+    act.[MPO],
+    act.[Process],
+    dot.[PDC Program],
+    '' AS [Unit of Measure],
+    'Dependencies' AS [Phase],
+    CASE  
+        WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN dot.[Dependency Target]
+        ELSE ROUND(dot.[Dependency Target], 0)
+    END AS [Plan],
+    ISNULL(act.[Dependency Actuals],0) AS [Completions],
+    CASE  
+        WHEN ISNULL(dot.[Dependency Target],0) = 0 THEN 0
+        ELSE ROUND((ISNULL(act.[Dependency Actuals],0)/dot.[Dependency Target]),4)
+    END AS [% to Plan],
+    '' AS [On Track],
+    '' AS [RAG]
+FROM IDDE_DOT dot
+LEFT JOIN IDDSEC_Actuals act ON dot.[PDC Program] = Act.[PDC Program]
+
+-- Fifth UNION ALL for 'Schedule' Phase
+UNION ALL
+SELECT
+    @Output AS [Output],
+    act.[Mega Process],
+    act.[MPO],
+    act.[Process],
+    dot.[PDC Program],
+    '' AS [Unit of Measure],
+    'Schedule' AS [Phase],
+    CASE  
+        WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN dot.[Schedule Target]
+        ELSE ROUND(dot.[Schedule Target], 0)
+    END AS [Plan],
+    ISNULL(act.[Schedule Actuals],0) AS [Completions],
+    CASE  
+        WHEN ISNULL(dot.[Schedule Target],0) = 0 THEN 0
+        ELSE ROUND((ISNULL(act.[Schedule Actuals],0)/dot.[Schedule Target]),4)
+    END AS [% to Plan],
+    '' AS [On Track],
+    '' AS [RAG]
+FROM ScheduleTargets dot
+LEFT JOIN IDDSEC_Actuals act ON dot.[PDC Program] = Act.[PDC Program]
+
+-- Last UNION ALL for 'Execute' Phase
+UNION ALL
+SELECT
+    @Output AS [Output],
+    act.[Mega Process],
+    act.[MPO],
+    act.[Process],
+    dot.[PDC Program],
+    '' AS [Unit of Measure],
+    'Execute' AS [Phase],
+    CASE  
+        WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN dot.[Execute Target]
+        ELSE ROUND(dot.[Execute Target], 0)
+    END AS [Plan],
+    ISNULL(act.[Execute Actuals],0) AS [Completions],
+    CASE  
+        WHEN ISNULL(dot.[Execute Target],0) = 0 THEN 0
+        ELSE ROUND((ISNULL(act.[Execute Actuals],0)/dot.[Execute Target]),4)
+    END AS [% to Plan],
+    '' AS [On Track],
+    '' AS [RAG]
+FROM IDDE_DOT dot
+LEFT JOIN IDDSEC_Actuals_wDOTActuals act ON dot.[PDC Program] = Act.[PDC Program]
