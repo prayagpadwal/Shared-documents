@@ -209,3 +209,39 @@ SELECT
     act.[MPO],
     act.[Process],
     dot.[PDC Program],
+    '' AS [Unit of Measure],
+    'EOY Forecast' AS [Phase],
+    '' AS [Plan],
+    CASE 
+        WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(act.[Total in Workplan], 2)
+        ELSE act.[Total in Workplan]
+    END AS [Completions],
+    '' AS [% to Plan],
+    '' AS [On Track],
+    'GRAY' AS [RAG]
+FROM IDDE_DOT dot
+LEFT JOIN IDDSEC_Actuals act ON dot.[PDC Program] = Act.[PDC Program]
+
+UNION ALL
+
+-- Rebaseline Phase
+SELECT
+    @Output AS [Output],
+    act.[Mega Process],
+    act.[MPO],
+    act.[Process],
+    dot.[PDC Program],
+    '' AS [Unit of Measure],
+    'Rebaseline' AS [Phase],
+    0 AS [Plan],
+    CASE 
+        WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(dot.[Rebaseline], 2)
+        ELSE dot.[Rebaseline]
+    END AS [Completions],
+    '' AS [% to Plan],
+    '' AS [On Track],
+    'GRAY' AS [RAG]
+FROM DOT_Rebaseline dot
+LEFT JOIN IDDSEC_Actuals act ON dot.[PDC Program] = Act.[PDC Program]
+
+ORDER BY [PDC Program];
