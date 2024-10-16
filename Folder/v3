@@ -1,3 +1,4 @@
+
 -- STACKABLE FORMAT
 SELECT
     @Output AS [Output],
