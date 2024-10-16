@@ -1,0 +1,211 @@
+-- STACKABLE FORMAT
+SELECT
+    @Output AS [Output],
+    act.[Mega Process],
+    act.[MPO],
+    act.[Process],
+    dot.[PDC Program],
+    '' AS [Unit of Measure],
+    'Annual Target' AS [Phase],
+    CASE 
+        WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(dot.[Initiation Target], 2)
+        ELSE ROUND(dot.[Initiation Target], 0)
+    END AS [Plan],
+    '' AS [Completions],
+    '' AS [% to Plan],
+    '' AS [On Track],
+    '' AS [RAG]
+FROM IDDE_DOT dot
+LEFT JOIN IDDSEC_Actuals act ON dot.[PDC Program] = act.[PDC Program]
+
+UNION ALL
+
+-- Initiation Phase
+SELECT
+    @Output AS [Output],
+    act.[Mega Process],
+    act.[MPO],
+    act.[Process],
+    dot.[PDC Program],
+    '' AS [Unit of Measure],
+    'Initiation' AS [Phase],
+    CASE 
+        WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(dot.[Initiation Target], 2)
+        ELSE ROUND(dot.[Initiation Target], 0)
+    END AS [Plan],
+    CASE 
+        WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(ISNULL(act.[Initiation Actuals], 0), 2)
+        ELSE ISNULL(act.[Initiation Actuals], 0)
+    END AS [Completions],
+    CASE  
+        WHEN ISNULL(dot.[Initiation Target], 0) = 0 THEN 0
+        ELSE 
+            CASE 
+                WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(ISNULL(act.[Initiation Actuals], 0) / dot.[Initiation Target], 4)
+                ELSE ROUND((ISNULL(act.[Initiation Actuals], 0) / dot.[Initiation Target]), 4)
+            END
+    END AS [% to Plan],
+    '' AS [On Track],
+    '' AS [RAG]
+FROM IDDE_DOT dot
+LEFT JOIN IDDSEC_Actuals act ON dot.[PDC Program] = Act.[PDC Program]
+
+UNION ALL
+
+-- Design Phase
+SELECT
+    @Output AS [Output],
+    act.[Mega Process],
+    act.[MPO],
+    act.[Process],
+    dot.[PDC Program],
+    '' AS [Unit of Measure],
+    'Design' AS [Phase],
+    CASE 
+        WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(dot.[Design Target], 2)
+        ELSE ROUND(dot.[Design Target], 0)
+    END AS [Plan],
+    CASE 
+        WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(ISNULL(act.[Design Actuals], 0), 2)
+        ELSE ISNULL(act.[Design Actuals], 0)
+    END AS [Completions],
+    CASE  
+        WHEN ISNULL(dot.[Design Target], 0) = 0 THEN 0
+        ELSE 
+            CASE 
+                WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(ISNULL(act.[Design Actuals], 0) / dot.[Design Target], 4)
+                ELSE ROUND((ISNULL(act.[Design Actuals], 0) / dot.[Design Target]), 4)
+            END
+    END AS [% to Plan],
+    '' AS [On Track],
+    '' AS [RAG]
+FROM IDDE_DOT dot
+LEFT JOIN IDDSEC_Actuals act ON dot.[PDC Program] = Act.[PDC Program]
+
+UNION ALL
+
+-- Dependencies Phase
+SELECT
+    @Output AS [Output],
+    act.[Mega Process],
+    act.[MPO],
+    act.[Process],
+    dot.[PDC Program],
+    '' AS [Unit of Measure],
+    'Dependencies' AS [Phase],
+    CASE 
+        WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(dot.[Dependency Target], 2)
+        ELSE ROUND(dot.[Dependency Target], 0)
+    END AS [Plan],
+    CASE 
+        WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(ISNULL(act.[Dependency Actuals], 0), 2)
+        ELSE ISNULL(act.[Dependency Actuals], 0)
+    END AS [Completions],
+    CASE  
+        WHEN ISNULL(dot.[Dependency Target], 0) = 0 THEN 0
+        ELSE 
+            CASE 
+                WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(ISNULL(act.[Dependency Actuals], 0) / dot.[Dependency Target], 4)
+                ELSE ROUND((ISNULL(act.[Dependency Actuals], 0) / dot.[Dependency Target]), 4)
+            END
+    END AS [% to Plan],
+    '' AS [On Track],
+    '' AS [RAG]
+FROM IDDE_DOT dot
+LEFT JOIN IDDSEC_Actuals act ON dot.[PDC Program] = Act.[PDC Program]
+
+UNION ALL
+
+-- Schedule Phase
+SELECT
+    @Output AS [Output],
+    act.[Mega Process],
+    act.[MPO],
+    act.[Process],
+    dot.[PDC Program],
+    '' AS [Unit of Measure],
+    'Schedule' AS [Phase],
+    CASE 
+        WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(dot.[Schedule Target], 2)
+        ELSE ROUND(dot.[Schedule Target], 0)
+    END AS [Plan],
+    CASE 
+        WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(ISNULL(act.[Schedule Actuals], 0), 2)
+        ELSE ISNULL(act.[Schedule Actuals], 0)
+    END AS [Completions],
+    CASE  
+        WHEN ISNULL(dot.[Schedule Target], 0) = 0 THEN 0
+        ELSE 
+            CASE 
+                WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(ISNULL(act.[Schedule Actuals], 0) / dot.[Schedule Target], 4)
+                ELSE ROUND((ISNULL(act.[Schedule Actuals], 0) / dot.[Schedule Target]), 4)
+            END
+    END AS [% to Plan],
+    '' AS [On Track],
+    '' AS [RAG]
+FROM ScheduleTargets dot
+LEFT JOIN IDDSEC_Actuals act ON dot.[PDC Program] = Act.[PDC Program]
+
+UNION ALL
+
+-- Execute Phase
+SELECT
+    @Output AS [Output],
+    act.[Mega Process],
+    act.[MPO],
+    act.[Process],
+    dot.[PDC Program],
+    '' AS [Unit of Measure],
+    'Execute' AS [Phase],
+    CASE 
+        WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(dot.[Execute Target], 2)
+        ELSE ROUND(dot.[Execute Target], 0)
+    END AS [Plan],
+    CASE 
+        WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(ISNULL(act.[Execute Actuals], 0), 2)
+        ELSE ISNULL(act.[Execute Actuals], 0)
+    END AS [Completions],
+    CASE  
+        WHEN ISNULL(dot.[Execute Target], 0) = 0 THEN 0
+        ELSE 
+            CASE 
+                WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(ISNULL(act.[Execute Actuals], 0) / dot.[Execute Target], 4)
+                ELSE ROUND((ISNULL(act.[Execute Actuals], 0) / dot.[Execute Target]), 4)
+            END
+    END AS [% to Plan],
+    '' AS [On Track],
+    '' AS [RAG]
+FROM IDDE_DOT dot
+LEFT JOIN IDDSEC_Actuals_wDOTActuals act ON dot.[PDC Program] = Act.[PDC Program]
+
+UNION ALL
+
+-- Total in Work Plan Phase
+SELECT
+    @Output AS [Output],
+    act.[Mega Process],
+    act.[MPO],
+    act.[Process],
+    dot.[PDC Program],
+    '' AS [Unit of Measure],
+    'Total in WP' AS [Phase],
+    '' AS [Plan],
+    CASE 
+        WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(act.[Total in Workplan], 2)
+        ELSE act.[Total in Workplan]
+    END AS [Completions],
+    '' AS [% to Plan],
+    '' AS [On Track],
+    'GRAY' AS [RAG]
+FROM IDDE_DOT dot
+LEFT JOIN IDDSEC_Actuals act ON dot.[PDC Program] = Act.[PDC Program]
+
+UNION ALL
+
+-- EOY Forecast Phase
+SELECT
+    @Output AS [Output],
+    act.[Mega Process],
+    act.[MPO],
+    act.[Process],
+    dot.[PDC Program],
