@@ -41,7 +41,7 @@ SELECT
         WHEN ISNULL(dot.[Initiation Target], 0) = 0 THEN 0
         ELSE 
             CASE 
-                WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(ISNULL(act.[Initiation Actuals], 0) / dot.[Initiation Target], 4)
+                WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(ROUND(ISNULL(act.[Initiation Actuals], 0), 2) / dot.[Initiation Target], 4)
                 ELSE ROUND((ISNULL(act.[Initiation Actuals], 0) / dot.[Initiation Target]), 4)
             END
     END AS [% to Plan],
@@ -73,7 +73,7 @@ SELECT
         WHEN ISNULL(dot.[Design Target], 0) = 0 THEN 0
         ELSE 
             CASE 
-                WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(ISNULL(act.[Design Actuals], 0) / dot.[Design Target], 4)
+                WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(ROUND(ISNULL(act.[Design Actuals], 0), 2) / dot.[Design Target], 4)
                 ELSE ROUND((ISNULL(act.[Design Actuals], 0) / dot.[Design Target]), 4)
             END
     END AS [% to Plan],
@@ -105,7 +105,7 @@ SELECT
         WHEN ISNULL(dot.[Dependency Target], 0) = 0 THEN 0
         ELSE 
             CASE 
-                WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(ISNULL(act.[Dependency Actuals], 0) / dot.[Dependency Target], 4)
+                WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(ROUND(ISNULL(act.[Dependency Actuals], 0), 2) / dot.[Dependency Target], 4)
                 ELSE ROUND((ISNULL(act.[Dependency Actuals], 0) / dot.[Dependency Target]), 4)
             END
     END AS [% to Plan],
@@ -137,7 +137,7 @@ SELECT
         WHEN ISNULL(dot.[Schedule Target], 0) = 0 THEN 0
         ELSE 
             CASE 
-                WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(ISNULL(act.[Schedule Actuals], 0) / dot.[Schedule Target], 4)
+                WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(ROUND(ISNULL(act.[Schedule Actuals], 0), 2) / dot.[Schedule Target], 4)
                 ELSE ROUND((ISNULL(act.[Schedule Actuals], 0) / dot.[Schedule Target]), 4)
             END
     END AS [% to Plan],
@@ -169,7 +169,7 @@ SELECT
         WHEN ISNULL(dot.[Execute Target], 0) = 0 THEN 0
         ELSE 
             CASE 
-                WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(ISNULL(act.[Execute Actuals], 0) / dot.[Execute Target], 4)
+                WHEN dot.[PDC Program] = 'ED OH Conductor Repl Non-HFTD' THEN ROUND(ROUND(ISNULL(act.[Execute Actuals], 0), 2) / dot.[Execute Target], 4)
                 ELSE ROUND((ISNULL(act.[Execute Actuals], 0) / dot.[Execute Target]), 4)
             END
     END AS [% to Plan],
