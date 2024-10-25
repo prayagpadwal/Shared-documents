@@ -3,22 +3,24 @@ VAR ActualForecast = SELECTEDVALUE('MPO Rooms'[Actual], Forecast)
 VAR Category = SELECTEDVALUE('MPO Rooms'[Category])
 VAR BudgetValue = SELECTEDVALUE('MPO Rooms'[Budget])
 VAR VarianceValue = SELECTEDVALUE('MPO Rooms'[Variance])
+VAR Period = SELECTEDVALUE('MPO Rooms'[Period]) // New Period variable
+
 RETURN
 SWITCH(
     TRUE(),
-    // Capital category with specific condition
-    Category = "Capital" && VarianceValue >= 10000000 && ABS(ActualForecast / BudgetValue) >= 0.02, "#FF0000", // Red Background
-    Category = "Capital" && VarianceValue < 10000000 && ABS(ActualForecast / BudgetValue) < 0.02, "#00FF00", // Green Background
+    // Capital category with specific condition and Period = EOY or YTD
+    Category = "Capital" && VarianceValue >= 10000000 && ABS(ActualForecast / BudgetValue) >= 0.02 && Period IN {"EOY", "YTD"}, "#FF0000", // Red Background
+    Category = "Capital" && VarianceValue < 10000000 && ABS(ActualForecast / BudgetValue) < 0.02 && Period IN {"EOY", "YTD"}, "#00FF00", // Green Background
     
-    // Other category subgroups with specific conditions
-    Category = "Expense" && VarianceValue >= 5000000 && ABS(ActualForecast / BudgetValue) >= 0.02, "#FF0000", // Red Background
-    Category = "Expense" && VarianceValue < 5000000 && ABS(ActualForecast / BudgetValue) < 0.02, "#00FF00", // Green Background
+    // Other category subgroups with specific conditions and Period = EOY or YTD
+    Category = "Expense" && VarianceValue >= 5000000 && ABS(ActualForecast / BudgetValue) >= 0.02 && Period IN {"EOY", "YTD"}, "#FF0000", // Red Background
+    Category = "Expense" && VarianceValue < 5000000 && ABS(ActualForecast / BudgetValue) < 0.02 && Period IN {"EOY", "YTD"}, "#00FF00", // Green Background
     
-    Category = "Non-Core/ Other Bal Sheet" && VarianceValue >= 5000000 && ABS(ActualForecast / BudgetValue) >= 0.02, "#FF0000", // Red Background
-    Category = "Non-Core/ Other Bal Sheet" && VarianceValue < 5000000 && ABS(ActualForecast / BudgetValue) < 0.02, "#00FF00", // Green Background
+    Category = "Non-Core/ Other Bal Sheet" && VarianceValue >= 5000000 && ABS(ActualForecast / BudgetValue) >= 0.02 && Period IN {"EOY", "YTD"}, "#FF0000", // Red Background
+    Category = "Non-Core/ Other Bal Sheet" && VarianceValue < 5000000 && ABS(ActualForecast / BudgetValue) < 0.02 && Period IN {"EOY", "YTD"}, "#00FF00", // Green Background
     
-    Category = "Non-EIE" && VarianceValue >= 5000000 && ABS(ActualForecast / BudgetValue) >= 0.02, "#FF0000", // Red Background
-    Category = "Non-EIE" && VarianceValue < 5000000 && ABS(ActualForecast / BudgetValue) < 0.02, "#00FF00", // Green Background,
-    
+    Category = "Non-EIE" && VarianceValue >= 5000000 && ABS(ActualForecast / BudgetValue) >= 0.02 && Period IN {"EOY", "YTD"}, "#FF0000", // Red Background
+    Category = "Non-EIE" && VarianceValue < 5000000 && ABS(ActualForecast / BudgetValue) < 0.02 && Period IN {"EOY", "YTD"}, "#00FF00", // Green Background,
+
     "#FFA500" // Amber Background as default for any other conditions not specified
 )
