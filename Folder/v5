@@ -18,14 +18,24 @@ GO
 -- Create date: 10/7/2024
 -- Description:	
 -- =============================================
-CREATE PROCEDURE PDCStoredProcedurev4
+CREATE OR ALTER PROCEDURE PDCStoredProcedurev5
+(
 
-	@WeekFilter int = 38, 
-	@ActualsFilter DATE = CAST(GETDATE() AS DATE),
-	@RAG_MIN_Threshold DECIMAL = 0.995,
-	@RAG_MAX_Threshold DECIMAL	= 1.25,
-	@Output VARCHAR = 'PDC',
-	@Year INT = YEAR(GETDATE())
+DECLARE @WeekFilter INT;
+DECLARE @ActualsFilter DATE;
+DECLARE @RAG_MIN_Threshold DECIMAL(6,2);
+DECLARE @RAG_MAX_Threshold DECIMAL(6,2);
+DECLARE @Output VARCHAR(40);
+DECLARE @Year INT;
+
+SET @WeekFilter = 38
+SET @ActualsFilter = CAST(GETDATE() AS DATE)
+SET @RAG_MIN_Threshold = .995;
+SET @RAG_MAX_Threshold = 1.25;
+SET @Output = 'PDC';
+SET @YEAR = 2024;
+
+)
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -33,7 +43,13 @@ BEGIN
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	--SELECT @WeekFilter, @ActualsFilter, @RAG_MIN_Threshold, @RAG_MAX_Threshold
+	SELECT 
+		@WeekFilter AS [WeekFilter], 
+		@ActualsFilter AS [Actuals Date], 
+		@RAG_MIN_Threshold AS [RAG_MIN_Threshold], 
+		@RAG_MAX_Threshold AS [RAG_MAX_Threshold],
+		@Output AS [Output],
+		@Year AS [Current Year];
 	--SELECT DISTINCT [FULL Week Number],[month],[Date Range]
 		--FROM  bsa.dbo.vw_DOT_2024_PDC_Program_Data
 		--WHERE [FULL Week Number] = 30;
@@ -558,4 +574,4 @@ END
 GO
 
 
-EXEC PDCStoredProcedurev4
+-- EXEC PDCStoredProcedurev5
