@@ -1,4 +1,32 @@
-Msg 2714, Level 16, State 3, Procedure PDCStoredProcedurev4, Line 6 [Batch Start Line 15]
-There is already an object named 'PDCStoredProcedurev4' in the database.
-Msg 229, Level 14, State 5, Procedure PDCStoredProcedurev4, Line 1 [Batch Start Line 558]
-The EXECUTE permission was denied on the object 'PDCStoredProcedurev4', database 'master', schema 'dbo'.
+Msg 102, Level 15, State 1, Procedure PDCStoredProcedurev5, Line 9 [Batch Start Line 15]
+Incorrect syntax near '('.
+Msg 137, Level 15, State 2, Procedure PDCStoredProcedurev5, Line 47 [Batch Start Line 15]
+Must declare the scalar variable "@Year".
+Msg 137, Level 15, State 2, Procedure PDCStoredProcedurev5, Line 192 [Batch Start Line 15]
+Must declare the scalar variable "@ActualsFilter".
+Msg 102, Level 15, State 1, Procedure PDCStoredProcedurev5, Line 246 [Batch Start Line 15]
+Incorrect syntax near ','.
+Msg 102, Level 15, State 1, Procedure PDCStoredProcedurev5, Line 271 [Batch Start Line 15]
+Incorrect syntax near ','.
+Msg 102, Level 15, State 1, Procedure PDCStoredProcedurev5, Line 283 [Batch Start Line 15]
+Incorrect syntax near ','.
+Msg 137, Level 15, State 2, Procedure PDCStoredProcedurev5, Line 297 [Batch Start Line 15]
+Must declare the scalar variable "@Output".
+Msg 137, Level 15, State 2, Procedure PDCStoredProcedurev5, Line 319 [Batch Start Line 15]
+Must declare the scalar variable "@Output".
+Msg 137, Level 15, State 2, Procedure PDCStoredProcedurev5, Line 351 [Batch Start Line 15]
+Must declare the scalar variable "@Output".
+Msg 137, Level 15, State 2, Procedure PDCStoredProcedurev5, Line 383 [Batch Start Line 15]
+Must declare the scalar variable "@Output".
+Msg 137, Level 15, State 2, Procedure PDCStoredProcedurev5, Line 415 [Batch Start Line 15]
+Must declare the scalar variable "@Output".
+Msg 137, Level 15, State 2, Procedure PDCStoredProcedurev5, Line 447 [Batch Start Line 15]
+Must declare the scalar variable "@Output".
+Msg 137, Level 15, State 2, Procedure PDCStoredProcedurev5, Line 479 [Batch Start Line 15]
+Must declare the scalar variable "@Output".
+Msg 137, Level 15, State 2, Procedure PDCStoredProcedurev5, Line 501 [Batch Start Line 15]
+Must declare the scalar variable "@Output".
+Msg 137, Level 15, State 2, Procedure PDCStoredProcedurev5, Line 523 [Batch Start Line 15]
+Must declare the scalar variable "@Output".
+Msg 2812, Level 16, State 62, Line 561
+Could not find stored procedure 'PDCStoredProcedurev5'.
