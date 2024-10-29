@@ -1,0 +1,15 @@
+-- Check if it's the fifth business day of the current month, then run the procedure
+IF EXISTS (
+    SELECT Calendar_Date
+    FROM (
+        SELECT Calendar_Date,
+               ROW_NUMBER() OVER (PARTITION BY YEAR(Calendar_Date), MONTH(Calendar_Date) ORDER BY Calendar_Date) AS row_num
+        FROM edo.dbo.ref_Calendar_Days 
+        WHERE Is_Business_Day = 1 AND YEAR(Calendar_Date) = YEAR(GETDATE()) AND MONTH(Calendar_Date) = MONTH(GETDATE())
+    ) AS c
+    WHERE c.row_num = 5 AND c.Calendar_Date = CAST(GETDATE() AS DATE)
+)
+BEGIN
+    -- Execute the stored procedure only if today is the fifth business day of the month
+    EXEC PDCStoredProcedurev5;
+END
