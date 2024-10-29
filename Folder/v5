@@ -1,45 +1,27 @@
--- ================================================
--- Template generated from Template Explorer using:
--- Create Procedure (New Menu).SQL
---
--- Use the Specify Values for Template Parameters 
--- command (Ctrl-Shift-M) to fill in the parameter 
--- values below.
---
--- This block of comments will not be included in
--- the definition of the procedure.
--- ================================================
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
--- =============================================
--- Author:		Prayag
--- Create date: 10/7/2024
--- Description:	
--- =============================================
-CREATE OR ALTER PROCEDURE PDCStoredProcedurev4
 
-	@WeekFilter int = 38, 
-	@ActualsFilter DATE = '2024-09-28',
-	@RAG_MIN_Threshold DECIMAL = 0.995,
-	@RAG_MAX_Threshold DECIMAL	= 1.25,
-	@Output VARCHAR = 'PDC',
-	@Year INT = 2024
-AS
-BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
+DECLARE @WeekFilter INT;
+DECLARE @ActualsFilter DATE;
+DECLARE @RAG_MIN_Threshold DECIMAL(6,2);
+DECLARE @RAG_MAX_Threshold DECIMAL(6,2);
+DECLARE @Output VARCHAR(40);
+DECLARE @Year INT;
 
-    -- Insert statements for procedure here
-	--SELECT @WeekFilter, @ActualsFilter, @RAG_MIN_Threshold, @RAG_MAX_Threshold
-	--SELECT DISTINCT [FULL Week Number],[month],[Date Range]
-		--FROM  bsa.dbo.vw_DOT_2024_PDC_Program_Data
-		--WHERE [FULL Week Number] = 30;
+SET @WeekFilter = 38
+SET @ActualsFilter = CAST(GETDATE() AS DATE)
+SET @RAG_MIN_Threshold = .995;
+SET @RAG_MAX_Threshold = 1.25;
+SET @Output = 'PDC';
+SET @YEAR = 2024;
 
+
+/*
+SELECT DISTINCT [FULL Week Number],[month],[Date Range]
+FROM  bsa.dbo.vw_DOT_2024_PDC_Program_Data
+WHERE [FULL Week Number] = 30
+*/
 
 --This CTE normalizes the notifications from our vw_WPML for just the YEAR we declared
+
 WITH WPML_Actuals AS (
 
       SELECT      [PDC Program] AS [PDC Program]
@@ -553,9 +535,4 @@ SELECT
 FROM DOT_Rebaseline dot
 LEFT JOIN IDDSEC_Actuals act ON dot.[PDC Program] = Act.[PDC Program]
 
-ORDER BY [PDC Program]
-END
-GO
-
-
-EXEC PDCStoredProcedurev4
+ORDER BY [PDC Program];
