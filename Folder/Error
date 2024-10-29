@@ -1,32 +1,28 @@
-Msg 102, Level 15, State 1, Procedure PDCStoredProcedurev5, Line 9 [Batch Start Line 15]
-Incorrect syntax near '('.
-Msg 137, Level 15, State 2, Procedure PDCStoredProcedurev5, Line 47 [Batch Start Line 15]
-Must declare the scalar variable "@Year".
-Msg 137, Level 15, State 2, Procedure PDCStoredProcedurev5, Line 192 [Batch Start Line 15]
-Must declare the scalar variable "@ActualsFilter".
-Msg 102, Level 15, State 1, Procedure PDCStoredProcedurev5, Line 246 [Batch Start Line 15]
-Incorrect syntax near ','.
-Msg 102, Level 15, State 1, Procedure PDCStoredProcedurev5, Line 271 [Batch Start Line 15]
-Incorrect syntax near ','.
-Msg 102, Level 15, State 1, Procedure PDCStoredProcedurev5, Line 283 [Batch Start Line 15]
-Incorrect syntax near ','.
-Msg 137, Level 15, State 2, Procedure PDCStoredProcedurev5, Line 297 [Batch Start Line 15]
-Must declare the scalar variable "@Output".
-Msg 137, Level 15, State 2, Procedure PDCStoredProcedurev5, Line 319 [Batch Start Line 15]
-Must declare the scalar variable "@Output".
-Msg 137, Level 15, State 2, Procedure PDCStoredProcedurev5, Line 351 [Batch Start Line 15]
-Must declare the scalar variable "@Output".
-Msg 137, Level 15, State 2, Procedure PDCStoredProcedurev5, Line 383 [Batch Start Line 15]
-Must declare the scalar variable "@Output".
-Msg 137, Level 15, State 2, Procedure PDCStoredProcedurev5, Line 415 [Batch Start Line 15]
-Must declare the scalar variable "@Output".
-Msg 137, Level 15, State 2, Procedure PDCStoredProcedurev5, Line 447 [Batch Start Line 15]
-Must declare the scalar variable "@Output".
-Msg 137, Level 15, State 2, Procedure PDCStoredProcedurev5, Line 479 [Batch Start Line 15]
-Must declare the scalar variable "@Output".
-Msg 137, Level 15, State 2, Procedure PDCStoredProcedurev5, Line 501 [Batch Start Line 15]
-Must declare the scalar variable "@Output".
-Msg 137, Level 15, State 2, Procedure PDCStoredProcedurev5, Line 523 [Batch Start Line 15]
-Must declare the scalar variable "@Output".
-Msg 2812, Level 16, State 62, Line 561
-Could not find stored procedure 'PDCStoredProcedurev5'.
+this one is setup to run on the 1st business day of the month, but we can edit it.
+ 
+-- If it's first business date of the week, then run the procedure
+
+IF EXISTS (
+
+	SELECT Calendar_Date
+
+	FROM (
+
+		SELECT Calendar_Date
+
+			,ROW_NUMBER() OVER (PARTITION BY Calendar_Week ORDER BY Calendar_Week) AS row_num
+
+		FROM edo.dbo.ref_Calendar_Days 
+
+		WHERE YEAR(Calendar_Date) = YEAR(GETDATE()) and Is_Business_Day = 1
+
+	) AS c
+
+	WHERE c.row_num = 1 and c.Calendar_Date = CAST(GETDATE() AS DATE)
+
+)
+
+BEGIN
+ 
+we can add this but change it to 5 and it'll run everyday but won't do anything unless it's the 5th business day
+ 
