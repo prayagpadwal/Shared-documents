@@ -1,4 +1,3 @@
-LITF Percent 3 = 
-IF(SUM([Field Work Time])/Sum([Total Hours]-[Non-Productive Time]-[Total OT Hours]))>1 THEN(SUM([Field Work Time])/Sum([Total Hours]-[Non-Productive Time]-[Total OT Hours]))
+If (sum([Field Work Time])/Sum([Total Hours]-[Non-Productive Time]-[Total OT Hours]))>1 THEN (sum([Field Work Time])/Sum([Total Hours]-[Non-Productive Time]-[Total OT Hours]))
 ELSE (sum([Field Work Time])/Sum([Total Hours]-[Non-Productive Time]-[Total OT Hours])) 
 END
