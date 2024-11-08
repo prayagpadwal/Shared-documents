@@ -1,0 +1,8 @@
+// used to seperate previous months, this month, and future inputed time
+if DATEDIFF('month',today(),[Calendar Day])=0 
+    then "This Month"
+    ELSE if DATEDIFF('month',today(),[Calendar Day])<0 
+            Then "Actuals"
+            Else "Future"
+        End
+END
