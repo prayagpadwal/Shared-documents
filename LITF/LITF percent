@@ -1,3 +1,4 @@
-If (sum([Field Work Time])/Sum([Total Hours]-[Non-Productive Time]-[Total OT Hours]))>1 THEN (sum([Field Work Time])/Sum([Total Hours]-[Non-Productive Time]-[Total OT Hours]))
-ELSE (sum([Field Work Time])/Sum([Total Hours]-[Non-Productive Time]-[Total OT Hours])) 
-END
+LITF Percent 4% = DIVIDE(
+    SUM(vw_FieldWorking_Charged_byDay_v2[Field Work Time]),
+    SUM(vw_FieldWorking_Charged_byDay_v2[Total Hours]) - SUM(vw_FieldWorking_Charged_byDay_v2[Non-Productive Time]) - SUM(vw_FieldWorking_Charged_byDay_v2[Total OT Hours])
+)
