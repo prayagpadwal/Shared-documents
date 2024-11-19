@@ -2,3 +2,19 @@ IF [Job Level (group)] = "Supervisor" THEN 0.5
 ELSEIF [Job Level (group)] = "Manager" THEN 0.25
 ELSEIF [Job Level (group)] = "Senior Leader" THEN 0.15
 END
+
+
+Job Level Value = 
+IF(
+    'Table'[Job Level (group)] = "Supervisor", 
+    0.5,
+    IF(
+        'Table'[Job Level (group)] = "Manager", 
+        0.25,
+        IF(
+            'Table'[Job Level (group)] = "Senior Leader", 
+            0.15,
+            BLANK() -- Optional: Return BLANK for other cases
+        )
+    )
+)
