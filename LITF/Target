@@ -1,0 +1,4 @@
+IF [Job Level (group)] = "Supervisor" THEN 0.5
+ELSEIF [Job Level (group)] = "Manager" THEN 0.25
+ELSEIF [Job Level (group)] = "Senior Leader" THEN 0.15
+END
