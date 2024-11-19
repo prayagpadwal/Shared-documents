@@ -1,0 +1,1 @@
+IF [c. LITF Percent] < MIN([Target]) THEN "RED" ELSE "GREEN" END
