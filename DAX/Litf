@@ -1,0 +1,2 @@
+Last Data Label = 
+IF(MAX('Table'[DateColumn]) = 'Table'[DateColumn], 'Table'[MetricColumn], BLANK())
