@@ -1,2 +1,3 @@
-Last Data Label = 
-IF(MAX('Table'[DateColumn]) = 'Table'[DateColumn], 'Table'[MetricColumn], BLANK())
+Current Month Label = 
+VAR CurrentMonthYear = FORMAT(TODAY(), "MM-YYYY")
+RETURN IF('Table'[MonthYearText] = CurrentMonthYear, FORMAT([LITF Percent 4], "0.00%"), BLANK())
